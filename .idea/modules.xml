@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/traffic-api/traffic-api.iml" filepath="$PROJECT_DIR$/traffic-api/traffic-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-api/traffic-api-commons/traffic-api-commons.iml" filepath="$PROJECT_DIR$/traffic-api/traffic-api-commons/traffic-api-commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-api/traffic-api-entity/traffic-api-entity.iml" filepath="$PROJECT_DIR$/traffic-api/traffic-api-entity/traffic-api-entity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-api/traffic-api-execption/traffic-api-execption.iml" filepath="$PROJECT_DIR$/traffic-api/traffic-api-execption/traffic-api-execption.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-api/traffic-api-interface/traffic-api-interface.iml" filepath="$PROJECT_DIR$/traffic-api/traffic-api-interface/traffic-api-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-api/traffic-api-resultCode/traffic-api-resultCode.iml" filepath="$PROJECT_DIR$/traffic-api/traffic-api-resultCode/traffic-api-resultCode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-cache/traffic-cache.iml" filepath="$PROJECT_DIR$/traffic-cache/traffic-cache.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-carry/traffic-carry.iml" filepath="$PROJECT_DIR$/traffic-carry/traffic-carry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-customer/traffic-customer.iml" filepath="$PROJECT_DIR$/traffic-customer/traffic-customer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-declare/traffic-declare.iml" filepath="$PROJECT_DIR$/traffic-declare/traffic-declare.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-delivery/traffic-delivery.iml" filepath="$PROJECT_DIR$/traffic-delivery/traffic-delivery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-dependencies/traffic-dependencies.iml" filepath="$PROJECT_DIR$/traffic-dependencies/traffic-dependencies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-finance/traffic-finance.iml" filepath="$PROJECT_DIR$/traffic-finance/traffic-finance.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-induce/traffic-induce.iml" filepath="$PROJECT_DIR$/traffic-induce/traffic-induce.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/traffic-master.iml" filepath="$PROJECT_DIR$/.idea/traffic-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-mq/traffic-mq.iml" filepath="$PROJECT_DIR$/traffic-mq/traffic-mq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-pack/traffic-pack.iml" filepath="$PROJECT_DIR$/traffic-pack/traffic-pack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-search/traffic-search.iml" filepath="$PROJECT_DIR$/traffic-search/traffic-search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-storage/traffic-storage.iml" filepath="$PROJECT_DIR$/traffic-storage/traffic-storage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-system/traffic-system.iml" filepath="$PROJECT_DIR$/traffic-system/traffic-system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-transport/traffic-transport.iml" filepath="$PROJECT_DIR$/traffic-transport/traffic-transport.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-utils/traffic-utils.iml" filepath="$PROJECT_DIR$/traffic-utils/traffic-utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/traffic-web/traffic-web.iml" filepath="$PROJECT_DIR$/traffic-web/traffic-web.iml" />
+    </modules>
+  </component>
+</project>

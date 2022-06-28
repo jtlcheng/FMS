@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="traffic-delivery" />
+        <module name="traffic-api-commons" />
+        <module name="traffic-transport" />
+        <module name="traffic-api-interface" />
+        <module name="traffic-mq" />
+        <module name="traffic-finance" />
+        <module name="traffic-master" />
+        <module name="traffic-web" />
+        <module name="traffic-cache" />
+        <module name="traffic-api-resultCode" />
+        <module name="traffic-api-entity" />
+        <module name="traffic-declare" />
+        <module name="traffic-carry" />
+        <module name="traffic-search" />
+        <module name="traffic-induce" />
+        <module name="traffic-pack" />
+        <module name="traffic-system" />
+        <module name="traffic-storage" />
+        <module name="traffic-utils" />
+        <module name="traffic-customer" />
+        <module name="traffic-api-execption" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="traffic-api" target="1.8" />
+      <module name="traffic-api-commons" target="1.8" />
+      <module name="traffic-api-entity" target="1.8" />
+      <module name="traffic-api-execption" target="1.8" />
+      <module name="traffic-api-interface" target="1.8" />
+      <module name="traffic-api-resultCode" target="1.8" />
+      <module name="traffic-cache" target="1.8" />
+      <module name="traffic-carry" target="1.8" />
+      <module name="traffic-customer" target="1.8" />
+      <module name="traffic-declare" target="1.8" />
+      <module name="traffic-delivery" target="1.8" />
+      <module name="traffic-dependencies" target="1.8" />
+      <module name="traffic-finance" target="1.8" />
+      <module name="traffic-induce" target="1.8" />
+      <module name="traffic-master" target="1.5" />
+      <module name="traffic-mq" target="1.8" />
+      <module name="traffic-pack" target="1.8" />
+      <module name="traffic-search" target="1.8" />
+      <module name="traffic-storage" target="1.8" />
+      <module name="traffic-system" target="1.8" />
+      <module name="traffic-transport" target="1.8" />
+      <module name="traffic-utils" target="1.8" />
+      <module name="traffic-web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

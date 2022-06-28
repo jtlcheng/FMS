@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/traffic-api/traffic-api-commons/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-api/traffic-api-entity/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-api/traffic-api-execption/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-api/traffic-api-execption/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-api/traffic-api-interface/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-api/traffic-api-interface/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-api/traffic-api-resultCode/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-cache/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-cache/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-carry/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-carry/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-customer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-customer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-declare/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-declare/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-delivery/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-delivery/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-dependencies/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-dependencies/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-finance/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-finance/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-induce/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-induce/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-mq/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-mq/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-pack/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-pack/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-search/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-search/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-storage/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-storage/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-system/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-system/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-transport/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-transport/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-utils/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-utils/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-web/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

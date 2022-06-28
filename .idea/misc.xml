@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-dependencies/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-system/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-customer/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-storage/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-transport/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-pack/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-induce/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-carry/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-delivery/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-finance/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-declare/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-utils/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-mq/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-search/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-web/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
