@@ -19,6 +19,7 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("user")
 public class userController {
+    final static int UPD_USER_ZERO=0;
     final static int UNAME_SIZE=2;
     final static int UACCOUNT_SIZE=4;
     final static int UPASS_SIZE=6;
@@ -85,7 +86,15 @@ public class userController {
             responseResult responseResult = responseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_ERROR_ADD_FAIL_PARAM_UDESC_NULL,"描述为空");
             logger.info("system user addUser return msg:"+ responseResult);
             return responseResult;
-        }//UNAME长度小小于2
+        }
+      /*  if (systemUtils.isNull(userEntity.getuStatus())){
+            logger.error("system user addUser uStatus is null");
+            logger.info("param:"+userEntity);
+            responseResult responseResult = responseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_ERROR_ADD_FAIL_PARAM_UDESC_NULL,"描述为空");
+            logger.info("system user addUser return msg:"+ responseResult);
+            return responseResult;
+        }*/
+        //UNAME长度小小于2
         if (userEntity.getUname().trim().length()<UNAME_SIZE){
             logger.error("system user addUser uName length is < 2");
             logger.info("param:"+userEntity);
@@ -127,5 +136,92 @@ public class userController {
         }
             logger.info("system user addUser end,return:"+responseResult);
             return responseResult;
+    }
+
+    /**
+     * 删除用户的请求
+     * @param uid="1" 删除一个; uid="1,2,3" 删除多个用逗号隔开
+     * @return是否成功
+     */
+    @PostMapping("/delUser")
+    public responseResult delUser(String uid){
+        logger.info("system user delUser start");
+        //传过来的参数是空的
+        if (systemUtils.isNullOrEmpty(uid)){
+            logger.error("system user delUser uid is null");
+            responseResult responseResult=responseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_ERROR_DEL_FAIL_PARAM_UID_NULL);
+            logger.info("system user delUser return msg:"+responseResult);
+            return responseResult;
+        }
+        //简单的逻辑判断 1：可以在这里判断 2：交给业务层判断
+        logger.info("system user delUser userService start");
+        boolean result =userService.delUser(uid);
+        logger.info("system suer delUser userService end"+result);
+
+        responseResult responseResult;
+        if (result!=true){
+            logger.error("system user delUser Fail");
+            responseResult=responseResultFactory.buildResponseResult();
+        }else {
+            logger.info("system user delUser Success");
+            responseResult = responseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_ERROR_DEL_SUCCESS,"修改成功");
+        }
+        logger.info("system user delUser end,return:"+responseResult);
+        return responseResult;
+    }
+
+    /**
+     * 修改用户
+     * @param entity
+     * @return
+     */
+    @PostMapping("updUser")
+    public responseResult updUser(@RequestBody userEntity entity){
+        logger.info("system user updUser start");
+        //参数为空
+        if (systemUtils.isNull(entity)){
+            logger.error("system user updUser userEntity is null");
+            responseResult responseResult = responseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_ERROR_UPD_FAIL_PARAM_NULL,"参数为空");
+            logger.info("system user updUser return msg:"+ responseResult);
+            return responseResult;
+
+        }
+        //没有传ID
+        if (systemUtils.isNull(entity.getUid())||entity.getUid()==UPD_USER_ZERO){
+            logger.error("system user updUser uId is null");
+            responseResult responseResult = responseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_ERROR_UPD_FAIL_PARAM_UID_NULL,"UID为空");
+            logger.info("system user updUser return msg:"+ responseResult);
+            return responseResult;
+
+        }
+        //简单的逻辑判断 1：可以在这里判断 2：交给业务层判断
+        logger.info("system user updUser userService start");
+        boolean result =userService.updUser(entity);
+        logger.info("system suer updUser userService end"+result);
+
+        responseResult responseResult;
+        if (result!=true){
+            logger.error("system user updUser Fail");
+            responseResult=responseResultFactory.buildResponseResult();
+        }else {
+            logger.info("system user updUser Success");
+            responseResult = responseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_ERROR_UPD_SUCCESS,"修改成功");
+        }
+        logger.info("system user updUser end,return:"+responseResult);
+        return responseResult;
+    }
+
+    //返回结果视图
+    private responseResult returnResponseResult(boolean result,String code){
+        responseResult responseResult;
+        if (result!=true){
+            logger.error("system user updUser Fail");
+            responseResult=responseResultFactory.buildResponseResult();
+        }else {
+            logger.info("system user updUser Success");
+            responseResult = responseResultFactory.buildResponseResult(code,"修改成功");
+        }
+        logger.info("system user returnResponseResult end,return:"+responseResult);
+        return responseResult;
     }
 }

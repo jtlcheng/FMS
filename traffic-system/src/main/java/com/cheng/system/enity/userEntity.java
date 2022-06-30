@@ -17,6 +17,7 @@ public class userEntity {
     private String t1;
     private String udesc;
 
+
     //我们在查询功能的时候会使用到
     private Date startTime;
     private Date endTime;
@@ -104,8 +105,11 @@ public class userEntity {
                 ", uphone='" + uphone + '\'' +
                 ", t1='" + t1 + '\'' +
                 ", udesc='" + udesc + '\'' +
+
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 '}';
     }
+
+
 }

@@ -24,7 +24,7 @@ public class userInfo{
   @Column
   private String udesc;
   @Column
-  private String uStatus;
+  private int ustatus;
 
 
 
@@ -107,11 +107,11 @@ public class userInfo{
     this.udesc = udesc;
   }
 
-  public String getuStatus() {
-    return uStatus;
+  public int getUstatus() {
+    return ustatus;
   }
 
-  public void setuStatus(String uStatus) {
-    this.uStatus = uStatus;
+  public void setUstatus(int ustatus) {
+    this.ustatus = ustatus;
   }
 }
