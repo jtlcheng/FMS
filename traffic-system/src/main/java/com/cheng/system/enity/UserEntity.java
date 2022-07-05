@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * 前端传过来的实体类
  */
-public class userEntity {
+public class UserEntity {
     private long uid;
     private String uname;
     private String uaccount;
@@ -17,11 +17,71 @@ public class userEntity {
     private String t1;
     private String udesc;
 
+    private Date utime;
+
+    public Date getUtime() {
+        return utime;
+    }
+
+    public void setUtime(Date utime) {
+        this.utime = utime;
+    }
 
     //我们在查询功能的时候会使用到
-    private Date startTime;
-    private Date endTime;
+    //我们在查询的时候会用到
+    //和前端约定 1:时间戳 2:字符串日期
+    private String startTime;
+    private String endTime;
 
+    private String sortType="ASC";
+
+    private String ustatus="0";
+
+    public String getUstatus() {
+        return ustatus;
+    }
+
+    public void setUstatus(String ustatus) {
+        this.ustatus = ustatus;
+    }
+
+    public String getSortType() {
+        return sortType;
+    }
+
+    public void setSortType(String sortType) {
+        this.sortType = sortType;
+    }
+
+    //假设做两个组合
+    private String sort;//组合排序规则；uTime,uAccount
+
+    public String getSort() {
+        return sort;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
+    }
+
+    private int currentPage=0;//当前页; 默认是从0开始
+    private int pageSize=3;//每页记录数
+
+    public int getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
 
     public long getUid() {
         return uid;
@@ -94,9 +154,25 @@ public class userEntity {
         this.udesc = desc;
     }
 
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
     @Override
     public String toString() {
-        return "userEntity{" +
+        return "UserEntity{" +
                 "uid=" + uid +
                 ", uname='" + uname + '\'' +
                 ", uaccount='" + uaccount + '\'' +

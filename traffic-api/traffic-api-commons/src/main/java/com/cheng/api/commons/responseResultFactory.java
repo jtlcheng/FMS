@@ -16,7 +16,7 @@ public class responseResultFactory<T>{
     public static responseResult buildResponseResult(String resultCode,String resultMsg){
         return new responseResult(resultCode,resultMsg);
     }
-   /* public static responseResult buildResponseResult(String resultCode,String resultMsg,T obj){
+    public static <T> responseResult buildResponseResult(String resultCode,String resultMsg,T obj){
         return new responseResult(resultCode,resultMsg,obj);
-    }*/
+    }
 }

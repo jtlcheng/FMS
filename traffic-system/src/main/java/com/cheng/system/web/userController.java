@@ -3,18 +3,19 @@ package com.cheng.system.web;
 import com.cheng.API.code.SystemCode;
 import com.cheng.api.commons.responseResult;
 import com.cheng.api.commons.responseResultFactory;
-import com.cheng.system.enity.userEntity;
+import com.cheng.system.enity.UserEntity;
+import com.cheng.system.repository.UserRepository;
 import com.cheng.system.service.userService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.cheng.api.commons.systemUtils;
-import javax.annotation.Resource;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("user")
@@ -27,12 +28,15 @@ public class userController {
     final static Logger logger= LoggerFactory.getLogger(userController.class);
     @Autowired
     userService userService;
+    @Autowired
+    UserRepository repository;
+
     @PostMapping("/addUser")
-    public responseResult addUser(@RequestBody userEntity userEntity){
+    public responseResult addUser(@RequestBody UserEntity userEntity){
         logger.info("system user addUser start");
         //添加失败
         if (systemUtils.isNull(userEntity)){
-            logger.error("system user addUser userEntity is null");
+            logger.error("system user addUser UserEntity is null");
             responseResult responseResult = responseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_ERROR_ADD_FAIL_PARAM_NUll,"参数为空");
             logger.info("system user addUser return msg:"+ responseResult);
             return responseResult;
@@ -87,9 +91,9 @@ public class userController {
             logger.info("system user addUser return msg:"+ responseResult);
             return responseResult;
         }
-      /*  if (systemUtils.isNull(userEntity.getuStatus())){
+      /*  if (systemUtils.isNull(UserEntity.getuStatus())){
             logger.error("system user addUser uStatus is null");
-            logger.info("param:"+userEntity);
+            logger.info("param:"+UserEntity);
             responseResult responseResult = responseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_ERROR_ADD_FAIL_PARAM_UDESC_NULL,"描述为空");
             logger.info("system user addUser return msg:"+ responseResult);
             return responseResult;
@@ -176,11 +180,11 @@ public class userController {
      * @return
      */
     @PostMapping("updUser")
-    public responseResult updUser(@RequestBody userEntity entity){
+    public responseResult updUser(@RequestBody UserEntity entity){
         logger.info("system user updUser start");
         //参数为空
         if (systemUtils.isNull(entity)){
-            logger.error("system user updUser userEntity is null");
+            logger.error("system user updUser UserEntity is null");
             responseResult responseResult = responseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_ERROR_UPD_FAIL_PARAM_NULL,"参数为空");
             logger.info("system user updUser return msg:"+ responseResult);
             return responseResult;
@@ -208,6 +212,89 @@ public class userController {
             responseResult = responseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_ERROR_UPD_SUCCESS,"修改成功");
         }
         logger.info("system user updUser end,return:"+responseResult);
+        return responseResult;
+    }
+
+    /**
+     * 查询所有用户信息
+     * @param 
+     * @return
+     */
+    @GetMapping("findAllUser")
+    public responseResult<List<UserEntity>> findAllUser(){
+        logger.info("system user query start");
+        List<UserEntity> allUser = userService.findAllUser();
+        responseResult <List<UserEntity>> responseResult=responseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_QUERY_SUCCESS,"查询成功",allUser);
+        logger.info("system user query end");
+        return responseResult;
+    }
+
+    /**
+     * 根据条件查询
+     * @param userEntity
+     * @return 查询列表
+     */
+    @PostMapping("findUsersByWhere")
+    public responseResult<List<UserEntity>> findUsersByWhere(UserEntity userEntity){
+        List<UserEntity> allUserByWhere = userService.findAllUserByWhere(userEntity);
+        logger.info("system user findUsersByWhere start :"+allUserByWhere);
+        responseResult <List<UserEntity>> responseResult;
+//        if (systemUtils.isNull(allUserByWhere) && allUserByWhere.size()>0)
+            if (!systemUtils.isNull(allUserByWhere) && allUserByWhere.size()>0){
+             responseResult=responseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_QUERY_SUCCESS,"查询成功",allUserByWhere);
+        }else {
+             responseResult = responseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_QUERY_FAIL, "内容不存在", allUserByWhere);
+        }
+            logger.info("system user findUserByWhere end:"+allUserByWhere);
+       return responseResult;
+    }
+
+    /**
+     * 根据时间查询
+     * @param userEntity
+     * @return
+     */
+    @PostMapping("findUsersByTime")
+    public responseResult<List<UserEntity>> findUsersByTime(UserEntity userEntity) {
+
+        List<UserEntity> users = userService.findUsersByTime(userEntity.getStartTime(), userEntity.getEndTime());
+        logger.info("system user findUsersByTime start :"+users);
+        responseResult<List<UserEntity>> responseResults;
+        if (!systemUtils.isNull(users) && users.size() > 0) {
+            logger.info("system user findUsersByTime success");
+            responseResults = responseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_QUERY_SUCCESS, "查询成功", users);
+        } else {
+            logger.info("system user findUsersByTime fail");
+            responseResults = responseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_QUERY_FAIL, "内容不存在", users);
+        }
+        logger.info("system user findUsersByTime end:"+users);
+        return responseResults;
+    }
+
+    /**
+     * 通用的分页查询
+     * 排序，分页，条件查询
+     * @param userEntity
+     * @return
+     */
+    @PostMapping("queryUsers")
+    public responseResult<List<UserEntity>> queryUsers(UserEntity userEntity){
+
+        //分页查询+条件擦好像
+        Map<String,Object>map=userService.queryUsers(userEntity);
+        logger.info("system user findUsersByTime start :"+map);
+        responseResult responseResult;
+        ArrayList users = (ArrayList) map.get("users");
+        System.out.println(users.size());
+
+        if (users.size() != 0 ){
+             responseResult=responseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_QUERY_SUCCESS,"查询成功",map);
+             logger.info("system user findUsersByTime success");
+        }else {
+             responseResult=responseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_QUERY_FAIL,"没有这个内容",map);
+             logger.info("system user findUsersByTime is null");
+        }
+        logger.info("system user findUsersByTime end :"+map);
         return responseResult;
     }
 

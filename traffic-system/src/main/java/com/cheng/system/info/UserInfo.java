@@ -1,10 +1,11 @@
 package com.cheng.system.info;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "t_user")
-public class userInfo{
+public class UserInfo {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +26,16 @@ public class userInfo{
   private String udesc;
   @Column
   private int ustatus;
+  @Column
+  private Date utime;
 
+  public Date getUtime() {
+    return utime;
+  }
 
+  public void setUtime(Date utime) {
+    this.utime = utime;
+  }
 
   public long getUid() {
     return uid;
