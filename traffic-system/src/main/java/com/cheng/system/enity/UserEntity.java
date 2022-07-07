@@ -1,8 +1,11 @@
 package com.cheng.system.enity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 前端传过来的实体类
@@ -17,7 +20,31 @@ public class UserEntity {
     private String t1;
     private String udesc;
 
-    private Date utime;
+    Date date =new Date();
+    private Date utime=date;
+
+    //角色编号:添加或修改的时候，需要去给用户指定角色信息 1,2,3,4,5
+    private String roleStr;
+
+    public String getRoleStr() {
+        return roleStr;
+    }
+
+    public void setRoleStr(String roleStr) {
+        this.roleStr = roleStr;
+    }
+
+    private List<RoleEntity> roles;
+
+
+    //给前台展示去展示的角色信息
+    public List<RoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleEntity> roles) {
+        this.roles = roles;
+    }
 
     public Date getUtime() {
         return utime;

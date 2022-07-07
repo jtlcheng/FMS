@@ -2,6 +2,7 @@ package com.cheng.system.info;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "t_user")
@@ -28,6 +29,26 @@ public class UserInfo {
   private int ustatus;
   @Column
   private Date utime;
+
+
+  @ManyToMany(cascade = CascadeType.ALL )
+  @JoinTable(name = "t_user_role",
+          joinColumns = {
+            @JoinColumn(name = "uid",referencedColumnName = "uid")
+          },
+          inverseJoinColumns = {
+            @JoinColumn(name = "rid",referencedColumnName = "rid")
+          }
+  )
+  private List<RoleInfo> roleInfos;
+
+  public List<RoleInfo> getRoleInfos() {
+    return roleInfos;
+  }
+
+  public void setRoleInfos(List<RoleInfo> roleInfos) {
+    this.roleInfos = roleInfos;
+  }
 
   public Date getUtime() {
     return utime;

@@ -2,9 +2,12 @@ package com.cheng.system.service.impl;
 
 import com.cheng.api.commons.systemUtils;
 import com.cheng.system.enity.UserEntity;
+import com.cheng.system.info.RoleInfo;
 import com.cheng.system.info.UserInfo;
+import com.cheng.system.repository.RoleRepository;
 import com.cheng.system.repository.UserRepository;
 import com.cheng.system.service.userService;
+import com.cheng.system.util.ConvertUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,8 @@ public class userServiceImpl implements userService {
     final int uStatus=1;
     @Autowired
     UserRepository repository;
+    @Autowired
+    RoleRepository roleRepository;
     Logger logger= LoggerFactory.getLogger(userServiceImpl.class);
     /**
      * 添加用户
@@ -40,7 +45,21 @@ public class userServiceImpl implements userService {
         logger.info("system user service addUser start:"+userEntity);
         logger.info("system user service addUser UserRepository save start");
         try {
-            user = repository.save(zhuanHuan(userEntity));
+            UserInfo userInfo = ConvertUtil.userEntityConvertsUserInfo(userEntity);
+            //设定角色信息
+            if (!systemUtils.isNullOrEmpty(userEntity.getRoleStr())) {
+                String[] roleIds = userEntity.getRoleStr().split(",");
+
+                List<RoleInfo> roleInfos = new ArrayList<>();
+                for (String roleId : roleIds) {//遍历角色的roleId
+                    if (null != roleRepository.findById(Long.parseLong(roleId)).get()) {
+                        roleInfos.add(roleRepository.findById(Long.parseLong(roleId)).get());
+                    }
+                }
+                //设置关系；添加这个用户 它有哪些角色 把数据保存到第三方
+                userInfo.setRoleInfos(roleInfos);
+            }
+            user = repository.save(userInfo);
             logger.info("system user service addUser UserRepository save end");
             logger.info("user:"+user);
         }catch (Exception exception){
@@ -140,7 +159,7 @@ public class userServiceImpl implements userService {
         logger.info("system user service findAllUser start:");
         List<UserInfo> allUserInfo = repository.findAll();
         logger.info("system user service findAllUser end");
-        return niZhuanList(allUserInfo);
+        return ConvertUtil.userInfosConvertUserEntity(allUserInfo);
 
     }
     /**
@@ -151,7 +170,7 @@ public class userServiceImpl implements userService {
     public List<UserEntity> findAllUserByWhere(UserEntity userEntity){
         logger.info("system user service findAllUserByWhere start :"+ userEntity);
         //将前端来的实体类转换成数据库用的实体类
-        UserInfo userInfo = zhuanHuan(userEntity);
+        UserInfo userInfo = ConvertUtil.userEntityConvertsUserInfo(userEntity);
         //匹配器
         ExampleMatcher matcher=ExampleMatcher.matching()
                 .withMatcher("uname",m->m.contains())
@@ -162,7 +181,7 @@ public class userServiceImpl implements userService {
         //根据咱们的条件去查询条件
         List<UserInfo> all = repository.findAll(example);
         logger.info("system user service findAllUserByWhere end :"+userEntity);
-        return niZhuanList(all);
+        return ConvertUtil.userInfosConvertUserEntity(all);
 
     }
     /**
@@ -183,7 +202,7 @@ public class userServiceImpl implements userService {
         }
         logger.info("system user service findAllUserByWhere end :"+t1,t2);
 
-        return niZhuanList(users);
+        return ConvertUtil.userInfosConvertUserEntity(users);
     }
 
     @Override
@@ -239,7 +258,7 @@ public class userServiceImpl implements userService {
         //定义我们的数据库查询出来的数据
         List<UserInfo> content=page.getContent();
         //转成我们前端使用的对象
-        List<UserEntity> users=niZhuanList(content);
+        List<UserEntity> users= ConvertUtil.userInfosConvertUserEntity(content);
         //通过页内容，构建数据
         Map<String,Object> map=new HashMap<>();
         map.put("users",users);//查询到的列表信息
@@ -248,61 +267,5 @@ public class userServiceImpl implements userService {
         map.put("pageSize",userEntity.getPageSize());
         logger.info("system user service queryUsers end :"+ userEntity);
         return map;
-    }
-
-    /**
-     * 将userInfo 转换成 UserEntity List
-     * @param userInfos
-     * @return
-     */
-    public List<UserEntity>niZhuanList(List<UserInfo> userInfos){
-        logger.info("system user service nizhuanList start"+userInfos);
-        List<UserEntity> list=new ArrayList<>();
-        for (UserInfo us : userInfos) {
-            list.add(niZhuang(us));
-        }
-        logger.info("system user service niZhuanList end:"+userInfos);
-        return list;
-    }
-    /**
-     * 将userInfo 转换成 UserEntity
-     * @param userInfo
-     * @return
-     */
-    private UserEntity niZhuang(UserInfo userInfo){
-        logger.info("system user service changeover start: "+userInfo);
-        UserEntity userEntity=new UserEntity();
-        userEntity.setT1(userInfo.getT1());
-        userEntity.setUpass(userInfo.getUpass());
-        userEntity.setDesc(userInfo.getDesc());
-        userEntity.setUaccount(userInfo.getUaccount());
-        userEntity.setUmail(userInfo.getUmail());
-        userEntity.setUname(userInfo.getUname());
-        userEntity.setUid(userInfo.getUid());
-        userEntity.setUtime(userInfo.getUtime());
-        logger.info("system user service changeover end:"+userInfo);
-        return userEntity;
-
-    }
-    /**
-     * 将 userEntity转换成 UserInfo
-     * @param userEntity
-     * @return UserInfo
-     */
-    public UserInfo zhuanHuan(UserEntity userEntity){
-        logger.info("system user service transition start: "+userEntity);
-        UserInfo userInfo=new UserInfo();
-        userInfo.setT1(userEntity.getT1());
-        userInfo.setUaccount(userEntity.getUaccount());
-        userInfo.setDesc(userEntity.getDesc());
-        userInfo.setUid(userEntity.getUid());
-        userInfo.setUmail(userEntity.getUmail());
-        userInfo.setUname(userEntity.getUname());
-        userInfo.setUpass(userEntity.getUpass());
-        userInfo.setUphone(userEntity.getUphone());
-//        UserInfo.setuStatus(UserEntity.getuStatus());
-        logger.info("system user service transition end: "+userInfo);
-
-        return userInfo;
     }
 }

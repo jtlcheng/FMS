@@ -45,10 +45,18 @@ public interface SystemCode {
 
 
 
+
     //10500-10999 成功的提示
     int SYSTEM_USER_INFO_ADD_SUCCESS=10500;
 
     //角色管理 11000-11999
-    int SYSTEM_ROLE_ERROR_ADD_FAIL = 11000;
+
+    String SYSTEM_ROLE_ERROR_ADD_FAIL = "11000";
+    //添加
+    String SYSTEM_ROLE_ADD_SUCCESS = "11001";
+    //查询
+    String SYSTEM_ROLE_QUERY_SUCCESS = "11050";
+
+
     //权限管理 12000-12999
 }
