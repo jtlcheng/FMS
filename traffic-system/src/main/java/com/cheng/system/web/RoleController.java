@@ -33,7 +33,7 @@ public class RoleController {
             return returnResponseResult(false, SystemCode.SYSTEM_ROLE_ERROR_ADD_FAIL);
         }
     }
-    @GetMapping(" ")
+    @GetMapping("queryAllRole")
     public responseResult queryAllRole(){
         List<RoleEntity> roleEntities = roleService.queryAllRole();
        return  responseResultFactory.buildResponseResult(SystemCode.SYSTEM_ROLE_QUERY_SUCCESS,"查询成功",roleEntities);
